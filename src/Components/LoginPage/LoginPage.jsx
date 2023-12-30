@@ -6,8 +6,6 @@ import { Card, CardBody, Col, Container, Input, Label, Row,Button } from 'reacts
 
 function LoginPage() {
     return (
- 
-        <>
             <div className="auth-page-content">                
                 <Container>
                     <Row>
@@ -41,7 +39,7 @@ function LoginPage() {
 
                                             <div className="mb-3">
                                                 <div className="float-end">
-                                                    <Link to="/auth-pass-reset-basic" className="text-muted">Forgot password?</Link>
+                                                    {/* <Link to="/auth-pass-reset-basic" className="text-muted">Forgot password?</Link> */}
                                                 </div>
                                                 <Label className="form-label" htmlFor="password-input">Password</Label>
                                                 <div className="position-relative auth-pass-inputgroup mb-3">
@@ -64,9 +62,9 @@ function LoginPage() {
                                                     <h5 className="fs-13 mb-4 title">Sign In with</h5>
                                                 </div>
                                                 <div>
-                                                    <Button color="primary" className="btn-icon"><i className="ri-facebook-fill fs-16"></i></Button>{" "}
-                                                    <Button color="danger" className="btn-icon"><i className="ri-google-fill fs-16"></i></Button>{" "}
-                                                    <Button color="dark" className="btn-icon"><i className="ri-github-fill fs-16"></i></Button>{" "}
+                                                    <Button color="primary" className="btn-icon"><i className="ri-facebook-fill fs-16"></i></Button>
+                                                    <Button color="danger" className="btn-icon"><i className="ri-google-fill fs-16"></i></Button>
+                                                    <Button color="dark" className="btn-icon"><i className="ri-github-fill fs-16"></i></Button>
                                                     <Button color="info" className="btn-icon"><i className="ri-twitter-fill fs-16"></i></Button>
                                                 </div>
                                             </div>
@@ -76,14 +74,14 @@ function LoginPage() {
                             </Card>
 
                             <div className="mt-4 text-center">
-                                <p className="mb-0">Don't have an account ? <Link to="/auth-signup-basic" className="fw-semibold text-primary text-decoration-underline"> Signup </Link> </p>
+                                {/* <p className="mb-0">Don't have an account ? <Link to="/auth-signup-basic" className="fw-semibold text-primary text-decoration-underline"> Signup </Link> </p> */}
                             </div>
 
                         </Col>
                     </Row>
                 </Container>
             </div>
-    </>
+
     )
 }
 

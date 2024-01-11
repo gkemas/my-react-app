@@ -1,18 +1,18 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {  BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import { authProtectedRoutes, publicRoutes } from "./AllRoutes";
 const Index = () =>{
   const availablePublicRoutesPaths = publicRoutes.map((r) => r.path);
   const availableAuthRoutesPath =authProtectedRoutes.map((r)=>r.path);
 return (
-    <Switch>
+    <Router>
       {/* <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact}/> */}
       {/* Diğer rotaları burada tanımlayabilirsiniz */}
-      <Route path={availablePublicRoutesPaths}>
-                    <NonAuthLayout>
-                        <Switch>
+      <Routes path={availablePublicRoutesPaths}>
+                    {/* <NonAuthLayout> */}
+                        
                             {publicRoutes.map((route, idx) => (
                                 <Route
                                     path={route.path}
@@ -21,11 +21,11 @@ return (
                                     exact={true}
                                 />
                             ))}
-                        </Switch>
-                    </NonAuthLayout>
-                </Route>
+                       
+                    {/* </NonAuthLayout> */}
+                </Routes>
 
-    </Switch>
+    </Router>
 );
 };
 export default Index;

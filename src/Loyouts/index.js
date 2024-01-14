@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
+import React from 'react';
 // import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
@@ -13,7 +14,8 @@ const VerticalLayout = (props) => {
     // useEffect(() => {
     //     window.scrollTo({ top: 0, behavior: 'smooth' });
     //     const initMenu = () => {
-    //         const pathName = process.env.PUBLIC_URL + props.location.pathname;
+    //         // const pathName = process.env.PUBLIC_URL + props.location.pathname;
+    //         const pathName = "/"
     //         const ul = document.getElementById("navbar-nav");
     //         const items = ul.getElementsByTagName("a");
     //         let itemsArray = [...items]; // converts NodeList to Array
@@ -30,50 +32,50 @@ const VerticalLayout = (props) => {
     //     }
     // }, [props.location.pathname, props.layoutType]);
 
-    function activateParentDropdown(item) {
-        item.classList.add("active");
-        let parentCollapseDiv = item.closest(".collapse.menu-dropdown");
+    // function activateParentDropdown(item) {
+    //     item.classList.add("active");
+    //     let parentCollapseDiv = item.closest(".collapse.menu-dropdown");
 
-        if (parentCollapseDiv) {
-            // to set aria expand true remaining
-            parentCollapseDiv.classList.add("show");
-            parentCollapseDiv.parentElement.children[0].classList.add("active");
-            parentCollapseDiv.parentElement.children[0].setAttribute("aria-expanded", "true");
-            if (parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")) {
-                parentCollapseDiv.parentElement.closest(".collapse").classList.add("show");
-                if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling)
-                    parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.classList.add("active");
-                if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse")) {
-                    parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").classList.add("show");
-                    parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").previousElementSibling.classList.add("active");
-                }
-            }
-            return false;
-        }
-        return false;
-    }
+    //     if (parentCollapseDiv) {
+    //         // to set aria expand true remaining
+    //         parentCollapseDiv.classList.add("show");
+    //         parentCollapseDiv.parentElement.children[0].classList.add("active");
+    //         parentCollapseDiv.parentElement.children[0].setAttribute("aria-expanded", "true");
+    //         if (parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")) {
+    //             parentCollapseDiv.parentElement.closest(".collapse").classList.add("show");
+    //             if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling)
+    //                 parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.classList.add("active");
+    //             if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse")) {
+    //                 parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").classList.add("show");
+    //                 parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").previousElementSibling.classList.add("active");
+    //             }
+    //         }
+    //         return false;
+    //     }
+    //     return false;
+    // }
 
-    const removeActivation = (items) => {
-        let actiItems = items.filter((x) => x.classList.contains("active"));
+    // const removeActivation = (items) => {
+    //     let actiItems = items.filter((x) => x.classList.contains("active"));
 
-        actiItems.forEach((item) => {
-            if (item.classList.contains("menu-link")) {
-                if (!item.classList.contains("active")) {
-                    item.setAttribute("aria-expanded", false);
-                }
-                if (item.nextElementSibling) {
-                    item.nextElementSibling.classList.remove("show");
-                }
-            }
-            if (item.classList.contains("nav-link")) {
-                if (item.nextElementSibling) {
-                    item.nextElementSibling.classList.remove("show");
-                }
-                item.setAttribute("aria-expanded", false);
-            }
-            item.classList.remove("active");
-        });
-    };
+    //     actiItems.forEach((item) => {
+    //         if (item.classList.contains("menu-link")) {
+    //             if (!item.classList.contains("active")) {
+    //                 item.setAttribute("aria-expanded", false);
+    //             }
+    //             if (item.nextElementSibling) {
+    //                 item.nextElementSibling.classList.remove("show");
+    //             }
+    //         }
+    //         if (item.classList.contains("nav-link")) {
+    //             if (item.nextElementSibling) {
+    //                 item.nextElementSibling.classList.remove("show");
+    //             }
+    //             item.setAttribute("aria-expanded", false);
+    //         }
+    //         item.classList.remove("active");
+    //     });
+    // };
 
     return (
         <React.Fragment>
@@ -83,7 +85,7 @@ const VerticalLayout = (props) => {
                     <React.Fragment key={key}>
                         {/* Main Header */}
                         {item['isHeader'] ?
-                            <li className="menu-title"><span data-key="t-menu">{props.t(item.label)} </span></li>
+                            <li className="menu-title"><span data-key="t-menu">{item.label} </span></li>
                             : (
                                 (item.subItems ? (
                                     <li className="nav-item">
@@ -94,7 +96,7 @@ const VerticalLayout = (props) => {
                                             data-bs-toggle="collapse"
                                         >
                                             <i className={item.icon}></i>
-                                            <span data-key="t-apps">{props.t(item.label)}</span>
+                                            <span data-key="t-apps">{item.label}</span>
                                             {item.badgeName ?
                                                 <span className={"badge badge-pill bg-" + item.badgeColor} data-key="t-new">{item.badgeName}</span>
                                                 : null}
@@ -113,7 +115,7 @@ const VerticalLayout = (props) => {
                                                                     to={subItem.link ? subItem.link : "/#"}
                                                                     className="nav-link"
                                                                 >
-                                                                    {props.t(subItem.label)}
+                                                                    {subItem.label}
                                                                     {subItem.badgeName ?
                                                                         <span className={"badge badge-pill bg-" + subItem.badgeColor} data-key="t-new">{subItem.badgeName}</span>
                                                                         : null}
@@ -126,7 +128,7 @@ const VerticalLayout = (props) => {
                                                                     className="nav-link"
                                                                     to="/#"
                                                                     data-bs-toggle="collapse"
-                                                                > {props.t(subItem.label)}
+                                                                > {subItem.label}
                                                                 </Link>
                                                                 <Collapse className="menu-dropdown" isOpen={subItem.stateVariables} id="sidebarEcommerce">
                                                                     <ul className="nav nav-sm flex-column">
@@ -139,18 +141,18 @@ const VerticalLayout = (props) => {
                                                                                             <Link
                                                                                                 to={childItem.link ? childItem.link : "/#"}
                                                                                                 className="nav-link">
-                                                                                                {props.t(childItem.label)}
+                                                                                                {childItem.label}
                                                                                             </Link>
                                                                                         </li>
                                                                                         : <li className="nav-item">
                                                                                             <Link to="/#" className="nav-link" onClick={childItem.click} data-bs-toggle="collapse">
-                                                                                            {props.t(childItem.label)}
+                                                                                            {childItem.label}
                                                                                             </Link>
                                                                                             <Collapse className="menu-dropdown" isOpen={childItem.stateVariables} id="sidebaremailTemplates">
                                                                                                 <ul className="nav nav-sm flex-column">
                                                                                                     {childItem.childItems.map((subChildItem, key) => (
                                                                                                         <li className="nav-item" key={key}>
-                                                                                                            <Link to={subChildItem.link} className="nav-link" data-key="t-basic-action">{props.t(subChildItem.label)} </Link>
+                                                                                                            <Link to={subChildItem.link} className="nav-link" data-key="t-basic-action">{subChildItem.label} </Link>
                                                                                                         </li>
                                                                                                     ))}
                                                                                                 </ul>
@@ -176,7 +178,7 @@ const VerticalLayout = (props) => {
                                         <Link
                                             className="nav-link menu-link"
                                             to={item.link ? item.link : "/#"}>
-                                            <i className={item.icon}></i> <span>{props.t(item.label)}</span>
+                                            <i className={item.icon}></i> <span>{item.label}</span>
                                             {item.badgeName ?
                                                 <span className={"badge badge-pill bg-" + item.badgeColor} data-key="t-new">{item.badgeName}</span>
                                                 : null}
